@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Магазин игр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎮</span>
+                    <span class="logo-text">GameHub</span>
+                </div>
+                <nav class="nav">
+                    <a href="#catalog">Каталог</a>
+                    <a href="#about">О нас</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Корзина <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Лучшие игры для настоящих геймеров</h1>
+            <p class="hero-subtitle">Тысячи игр по лучшим ценам. Мгновенная доставка ключей.</p>
+            <a href="#catalog" class="btn btn-primary">Перейти в каталог</a>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section id="catalog" class="filters">
+        <div class="container">
+            <h2 class="section-title">Каталог игр</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все игры</button>
+                <button class="filter-btn" data-filter="action">Экшен</button>
+                <button class="filter-btn" data-filter="rpg">RPG</button>
+                <button class="filter-btn" data-filter="strategy">Стратегии</button>
+                <button class="filter-btn" data-filter="sport">Спорт</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Catalog -->
+    <section class="catalog">
+        <div class="container">
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be added by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>GameHub - твой проводник в мир игр</h3>
+                    <p>Мы работаем на рынке цифровых игр с 2018 года и за это время помогли более 50,000 геймерам найти свои любимые игры по лучшим ценам.</p>
+                    <p>Наша миссия - делать игры доступными для всех. Мы сотрудничаем напрямую с издателями и официальными дистрибьюторами, что позволяет нам предлагать самые выгодные цены на рынке.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">⚡</div>
+                            <h4>Мгновенная доставка</h4>
+                            <p>Ключи приходят на email сразу после оплаты</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🛡️</div>
+                            <h4>100% гарантия</h4>
+                            <p>Все ключи лицензионные и проверенные</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">💬</div>
+                            <h4>Поддержка 24/7</h4>
+                            <p>Всегда на связи в любых мессенджерах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:support@gamehub.ru">support@gamehub.ru</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <h4>Telegram</h4>
+                            <a href="https://t.me/gamehub_support">@gamehub_support</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🎮</div>
+                        <div>
+                            <h4>Discord</h4>
+                            <a href="#">GameHub Community</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Напишите нам</h3>
+                    <form onsubmit="sendMessage(event)">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="email" placeholder="Email" required>
+                        <textarea placeholder="Сообщение" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Корзина</h3>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Корзина пуста</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotal">0 ₽</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GameHub. Все права защищены.</p>
+            <div class="social">
+                <a href="#">Telegram</a>
+                <a href="#">VK</a>
+                <a href="#">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
